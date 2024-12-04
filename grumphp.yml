@@ -1,0 +1,21 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+
+    # Tasks to be executed by GrumPHP
+    tasks:
+        # PHPUnit: Runs unit tests before commit
+        phpunit:
+            always_execute: true  # Always run tests before committing
+
+        # PHP_CodeSniffer: Lint your code for PSR2 compliance
+        phpcs:
+            standard: PSR2  # Use PSR-2 coding standard
+            ignore_patterns:  # Files and directories to ignore (if needed)
+                - ./tests/*
+                - ./vendor/*
+            whitelist_patterns:  # Files and directories to check
+                - '/^app\/(.*)/'  # Only check files in the "app" directory
+    git_hooks:
+        pre_commit: true  
+        pre_push: false
